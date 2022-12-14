@@ -32,27 +32,23 @@ class MalwareBazaar:
         }
         response = requests.post('https://mb-api.abuse.ch/api/v1/', data=data, timeout=25)
         json_response = json.loads(response.text)
-        return [item['sha256_hash'] for item in json_response['data']]
+        return [item for item in json_response['data']]
 
     @staticmethod
-    def download_files(hashes):
-        """ Expects a list of hashes. Returns nothing. 
-
-        Downloads all of the files associated with the hashes. 
-        
+    def download_file(hash):
+        """ Expects a hash. Output dir is '../bin/malicious/hash' 
         """
 
-        if isinstance(hashes,list) is False:
-            raise Exception("Invalid input type. Input must be a list of hashes represented with a string")
-        for hash in hashes:
-            data = {
-                'query':'get_file',
-                'sha256_hash':hash
-            }
-            response = requests.post('https://mb-api.abuse.ch/api/v1/', data=data, timeout=100, allow_redirects=True)
-            open(f"../bin/malicious/{hash}", 'wb').write(response.content)
+        if isinstance(hash,str) is False:
+            raise Exception("Invalid input type. Input must be a hash represented with a string")
+        data = {
+            'query':'get_file',
+            'sha256_hash':hash
+        }
+        response = requests.post('https://mb-api.abuse.ch/api/v1/', data=data, timeout=100, allow_redirects=True)
+        open(f"../bin/malicious/{hash}", 'wb').write(response.content)
 
 
 # How to download 5 malicious elf files
-hashes = MalwareBazaar.get_samples_by_tag('elf','5')
-MalwareBazaar.download_files(hashes)
+# hashes = MalwareBazaar.get_samples_by_tag('elf','5')
+# MalwareBazaar.download_files(hashes)

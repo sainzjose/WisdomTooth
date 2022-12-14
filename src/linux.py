@@ -23,7 +23,8 @@ def get_hash(files):
     return hashes
 
 def get_json():
-        
+    pass
+
 files = get_bin_files()
 print(get_hash(files))
 #print(convert_to_hash(files))

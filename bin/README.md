@@ -1,4 +1,4 @@
-# ⚠️⚠️⚠️ Warning ⚠️⚠️⚠️
+# ⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️
 
 There are malicious files in the malicious directory.
 

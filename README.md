@@ -1,4 +1,4 @@
-# WisdomTooth
+# WisdomTooth 🧐🦷
 
 Automation of Feature Extraction Using Control Flow Graphs 
 
